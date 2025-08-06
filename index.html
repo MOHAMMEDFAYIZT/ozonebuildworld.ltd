@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozonebuildworld Ltd - Premium Maintenance Services UK</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <style>
+        /* Logo text styling */
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .section-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .section-title {
+                font-size: 3.5rem;
+            }
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #0284c7;
+            border-radius: 2px;
+        }
+        .section-subtitle {
+            @apply text-lg md:text-xl text-gray-600 max-w-3xl mx-auto;
+            font-weight: 600;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            margin-top: 2rem;
+            color: #4b5563;
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* New Service Card Styles */
+        .service-card-img {
+            height: 350px;
+            border-radius: 0.75rem;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.4s ease-in-out;
+        }
+        .service-card-img:hover {
+            transform: scale(1.03);
+        }
+        .service-card-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.1) 60%);
+            z-index: 1;
+        }
+        .service-card-img .content {
+            position: relative;
+            z-index: 2;
+            padding: 1.5rem;
+            transform: translateY(calc(100% - 4.5rem)); /* Keep title visible */
+            transition: transform 0.4s ease-in-out;
+        }
+        .service-card-img:hover .content {
+            transform: translateY(0);
+        }
+        .service-card-img .description {
+            margin-top: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out 0.1s;
+        }
+        .service-card-img:hover .description {
+           opacity: 1;
+        }
+
+        .project-card img {
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Improved Testimonials Section */
+        .testimonial-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-slider {
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 300%; /* 3 testimonials * 100% */
+        }
+        
+        .testimonial-slide {
+            flex: 0 0 33.333%;
+            padding: 0 1rem;
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0284c7, #0ea5e9, #38bdf8);
+        }
+        
+        .star-rating {
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .author-avatar {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            margin-right: 1rem;
+            border: 3px solid #0284c7;
+        }
+        
+        .author-info h4 {
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+        
+        .author-info p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #0284c7;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: #0284c7;
+            transform: scale(1.2);
+        }
+        
+        .nav-arrow {
+            background: #0284c7;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-arrow:hover {
+            background: #0369a1;
+            transform: scale(1.1);
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .testimonial-track {
+                width: 300%;
+            }
+            .testimonial-slide {
+                flex: 0 0 33.333%;
+                padding: 0 0.5rem;
+            }
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+            .testimonial-text {
+                font-size: 1rem;
+            }
+            .author-avatar {
+                width: 3rem;
+                height: 3rem;
+            }
+        }
+
+        /* Improved spacing utilities */
+        .section-spacing {
+            padding: 5rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header x-data="{ mobileMenuOpen: false }" class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center">
+                    <img src="logo.png" alt="Ozonebuildworld Ltd Logo" class="h-12 mr-3" onerror="this.onerror=null;this.src='https://placehold.co/200x50/cccccc/ffffff?text=OzoneBuild';">
+                    <div class="text-2xl logo-text">
+                        <span class="text-gray-800">OZONE</span><span class="text-sky-600">BUILDWORLD</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-sky-600 transition duration-300">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-sky-600 transition duration-300">About Us</a>
+                    <a href="#services" class="text-gray-600 hover:text-sky-600 transition duration-300">Services</a>
+                    <a href="#projects" class="text-gray-600 hover:text-sky-600 transition duration-300">Projects</a>
+                    <a href="#testimonials" class="text-gray-600 hover:text-sky-600 transition duration-300">Reviews</a>
+                    <a href="#contact" class="bg-sky-600 text-white px-5 py-2 rounded-md hover:bg-sky-700 transition duration-300 shadow-md cta-button">Get a Quote</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-800 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" class="md:hidden mt-4" x-transition>
+                <a href="#home" @click="mobileMenuOpen = false" class="block py-2 px-4 text-sm text-gray-600 hover:bg-sky-50 rounded">Home</a>
+                <a href="#about" @click="mobileMenuOpen = false" class="block py-2 px-4 text-sm text-gray-600 hover:bg-sky-50 rounded">About Us</a>
+                <a href="#services" @click="mobileMenuOpen = false" class="block py-2 px-4 text-sm text-gray-600 hover:bg-sky-50 rounded">Services</a>
+                <a href="#projects" @click="mobileMenuOpen = false" class="block py-2 px-4 text-sm text-gray-600 hover:bg-sky-50 rounded">Projects</a>
+                <a href="#testimonials" @click="mobileMenuOpen = false" class="block py-2 px-4 text-sm text-gray-600 hover:bg-sky-50 rounded">Reviews</a>
+                <a href="#contact" @click="mobileMenuOpen = false" class="block mt-2 py-2 px-4 text-sm text-white bg-sky-600 hover:bg-sky-700 rounded text-center">Get a Quote</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-bg text-white">
+            <div class="container mx-auto px-6 h-[85vh] min-h-[550px] flex flex-col items-center justify-center text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">Your Maintenance Service Partner</h1>
+                <p class="text-lg md:text-xl max-w-3xl mb-8 leading-relaxed">Trusted by property owners across the UK for reliable maintenance solutions, expert repairs, and exceptional service every time.</p>
+                <a href="#services" class="bg-sky-600 text-white px-8 py-4 rounded-md text-lg font-semibold hover:bg-sky-700 transition duration-300 shadow-lg transform hover:scale-105 cta-button">Explore Our Services</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section-spacing bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title">🔧 Our Maintenance Services</h2>
+                    <p class="section-subtitle">We offer a wide range of premium services to keep your property in pristine condition, ensuring quality and reliability in every project we undertake.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Service Card 1: Plumbing -->
+                    <div class="service-card-img" style="background-image: url('plumbing.jpg');">
+                        <div class="content">
+                            <h3 class="text-2xl font-bold mb-2">Plumbing Services</h3>
+                            <p class="description">From leaky faucets to burst pipes, our certified plumbers are available 24/7 to handle any emergency with professional expertise.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 2: Electrical -->
+                    <div class="service-card-img" style="background-image: url('electricwork.jpg');">
+                        <div class="content">
+                            <h3 class="text-2xl font-bold mb-2">Electrical Works</h3>
+                            <p class="description">Safe and reliable electrical services, including wiring, fixture installation, and comprehensive safety inspections for your peace of mind.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 3: Carpentry -->
+                    <div class="service-card-img" style="background-image: url('carpenter.jpg');">
+                        <div class="content">
+                            <h3 class="text-2xl font-bold mb-2">Carpentry</h3>
+                            <p class="description">Custom furniture, repairs, and installations. Our skilled carpenters bring exceptional craftsmanship and attention to detail to every project.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 4: Painting -->
+                    <div class="service-card-img" style="background-image: url('painting.jpg');">
+                        <div class="content">
+                            <h3 class="text-2xl font-bold mb-2">Painting & Decorating</h3>
+                            <p class="description">Transform your space with our professional interior and exterior painting services, delivering a fresh, vibrant new look that lasts.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 5: HVAC -->
+                    <div class="service-card-img" style="background-image: url('hvac.jpg');">
+                        <div class="content">
+                            <h3 class="text-2xl font-bold mb-2">HVAC Services</h3>
+                            <p class="description">Complete installation, repair, and maintenance of heating, ventilation, and air conditioning systems for optimal comfort year-round.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 6: General Repairs -->
+                    <div class="service-card-img" style="background-image: url('general.jpg');">
+                        <div class="content">
+                            <h3 class="text-2xl font-bold mb-2">General Handyman</h3>
+                            <p class="description">For all the small jobs and fixes around your property, our comprehensive handyman services ensure no task is too small.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section-spacing bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title">Our Recent Projects</h2>
+                    <p class="section-subtitle">A glimpse into the exceptional quality and diversity of our completed work, showcasing our commitment to excellence and innovation.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="project-card group relative rounded-lg overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1572021335469-31706a17aaef?q=80&w=2070&auto=format&fit=crop" alt="Project 1" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div>
+                                <h3 class="text-white text-xl font-bold">Commercial Complex Maintenance</h3>
+                                <p class="text-gray-200">London, UK</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card group relative rounded-lg overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Project 2" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div>
+                                <h3 class="text-white text-xl font-bold">Luxury Villa Renovation</h3>
+                                <p class="text-gray-200">Manchester, UK</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card group relative rounded-lg overflow-hidden shadow-lg">
+                        <img src="apartmentlandscaping.jpg" alt="Project 3" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div>
+                                <h3 class="text-white text-xl font-bold">Apartment Landscaping</h3>
+                                <p class="text-gray-200">Birmingham, UK</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Us Section -->
+        <section id="about" class="section-spacing bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title">About Ozonebuildworld Ltd.</h2>
+                    <p class="section-subtitle">Delivering excellence in building and maintenance services across the UK with unwavering commitment to quality and customer satisfaction.</p>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2">
+                        <img src="team.jpg" alt="Ozonebuildworld Team" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div class="md:w-1/2 space-y-4">
+                        <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Your Trusted Maintenance Partner</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed">Ozonebuildworld Ltd. is a leading property maintenance company based in the UK. Founded on the principles of reliability, quality, and customer satisfaction, we have built a reputation for excellence.</p>
+                        <p class="text-gray-600 text-lg leading-relaxed">Our mission is to provide seamless and stress-free maintenance services for both residential and commercial properties. We handle every aspect of property care, allowing our clients to focus on what matters most to them.</p>
+                        <div class="pt-4">
+                            <a href="#contact" class="text-sky-600 font-semibold hover:underline text-lg">Learn More & Get In Touch &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-us" class="section-spacing bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title">⭐ Why Choose Us?</h2>
+                    <p class="section-subtitle">We are committed to providing exceptional service and quality workmanship that exceeds expectations in every project we undertake.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                    <div class="p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <i class="fas fa-users text-5xl text-sky-600 mb-6"></i>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Experienced Team</h3>
+                        <p class="text-gray-600 leading-relaxed">Our technicians are highly skilled, vetted, and dedicated to delivering the best results with years of industry experience.</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <i class="fas fa-shield-alt text-5xl text-sky-600 mb-6"></i>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Quality Guaranteed</h3>
+                        <p class="text-gray-600 leading-relaxed">We stand by our work with a comprehensive satisfaction guarantee, ensuring complete peace of mind for our clients.</p>
+                    </div>
+                    <div class="p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <i class="fas fa-headset text-5xl text-sky-600 mb-6"></i>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">24/7 Support</h3>
+                        <p class="text-gray-600 leading-relaxed">Emergencies don't wait. Our team is available around the clock to assist you when you need it most.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section-spacing bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title">What Our Clients Say</h2>
+                    <p class="section-subtitle">We're proud to have earned the trust and satisfaction of clients across the UK, building lasting relationships through exceptional service.</p>
+                </div>
+                
+                <div class="testimonial-container" x-data="testimonialCarousel()">
+                    <div class="testimonial-slider">
+                        <div class="testimonial-track" :style="`transform: translateX(-${currentIndex * 33.333}%)`">
+                            <!-- Testimonial 1 -->
+                            <div class="testimonial-slide">
+                                <div class="testimonial-card">
+                                    <div class="star-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="testimonial-text">"Ozonebuildworld's team was exceptionally professional, punctual, and did an outstanding job fixing our plumbing issues. Their attention to detail and customer service is unmatched. Highly recommended!"</p>
+                                    <div class="testimonial-author">
+                                        <img class="author-avatar" src="https://placehold.co/100x100/E2E8F0/4A5568?text=JS" alt="Avatar of John Smith">
+                                        <div class="author-info">
+                                            <h4>John Smith</h4>
+                                            <p>Homeowner, London</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 2 -->
+                            <div class="testimonial-slide">
+                                <div class="testimonial-card">
+                                    <div class="star-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <p class="testimonial-text">"The electrical inspection was thoroughly comprehensive and the detailed report exceeded our expectations. Their team provided invaluable advice for our office renovation. Professional service from start to finish."</p>
+                                    <div class="testimonial-author">
+                                        <img class="author-avatar" src="https://placehold.co/100x100/E2E8F0/4A5568?text=AW" alt="Avatar of Alice Webber">
+                                        <div class="author-info">
+                                            <h4>Alice Webber</h4>
+                                            <p>Business Manager, Manchester</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 3 -->
+                            <div class="testimonial-slide">
+                                <div class="testimonial-card">
+                                    <div class="star-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="testimonial-text">"Absolutely fantastic painting job that completely transformed our living room. The crew was remarkably tidy, efficient, and incredibly friendly throughout the entire process. The results speak for themselves!"</p>
+                                    <div class="testimonial-author">
+                                        <img class="author-avatar" src="https://placehold.co/100x100/E2E8F0/4A5568?text=DB" alt="Avatar of David Brown">
+                                        <div class="author-info">
+                                            <h4>David Brown</h4>
+                                            <p>Resident, Birmingham</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <div class="testimonial-nav">
+                        <button @click="previousSlide()" class="nav-arrow">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        
+                        <div class="flex space-x-2">
+                            <button @click="goToSlide(0)" :class="{ 'active': currentIndex === 0 }" class="nav-dot"></button>
+                            <button @click="goToSlide(1)" :class="{ 'active': currentIndex === 1 }" class="nav-dot"></button>
+                            <button @click="goToSlide(2)" :class="{ 'active': currentIndex === 2 }" class="nav-dot"></button>
+                        </div>
+                        
+                        <button @click="nextSlide()" class="nav-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-spacing bg-gray-50">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="section-title">📞 Get In Touch</h2>
+                    <p class="section-subtitle">Have a project in mind? We'd love to hear from you. Reach out for a free consultation and detailed quote tailored to your specific needs.</p>
+                </div>
+                <div class="max-w-6xl mx-auto bg-white p-8 md:p-12 rounded-lg shadow-2xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <!-- Contact Form -->
+                        <form id="contactForm" class="space-y-6">
+                            <div>
+                                <label for="name" class="font-medium text-gray-700 text-lg">Full Name</label>
+                                <input type="text" id="name" name="name" class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500" required>
+                            </div>
+                            <div>
+                                <label for="email" class="font-medium text-gray-700 text-lg">Email Address</label>
+                                <input type="email" id="email" name="email" class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500" required>
+                            </div>
+                            <div>
+                                <label for="message" class="font-medium text-gray-700 text-lg">Message</label>
+                                <textarea id="message" name="message" rows="5" class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-sky-600 text-white font-bold py-3 rounded-md shadow-lg hover:bg-sky-700 cta-button">Send Message</button>
+                            <div id="form-status" class="mt-4 text-center"></div>
+                        </form>
+                        
+                        <!-- Contact Info -->
+                        <div class="space-y-8 text-gray-600">
+                            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8">Contact Information</h3>
+                            <div class="flex items-start space-x-4">
+                                <i class="fas fa-map-marker-alt text-2xl text-sky-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 text-lg mb-2">Address</h4>
+                                    <p class="text-gray-600 leading-relaxed">4 Stacy Close,<br>London, E10 6DS</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start space-x-4">
+                                <i class="fas fa-phone text-2xl text-sky-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 text-lg mb-2">Phone</h4>
+                                    <p class="text-gray-600 leading-relaxed">+44 0 7424 309118</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <i class="fas fa-envelope text-2xl text-sky-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 text-lg mb-2">Email</h4>
+                                    <p class="text-gray-600 leading-relaxed">info@ozonebuildworld.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <img src="logo.png" alt="Ozonebuildworld Ltd Logo" class="h-10 mr-3" onerror="this.onerror=null;this.src='https://placehold.co/200x50/1F2937/ffffff?text=OzoneBuild';">
+                        <div class="text-xl logo-text">
+                            <span class="text-white">OZONE</span><span class="text-sky-400">BUILDWORLD</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">Your trusted partner for quality construction and maintenance. We are committed to excellence and customer satisfaction in every project we undertake.</p>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition">Projects</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Social Media -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Ozonebuildworld Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Testimonial Carousel Component
+        function testimonialCarousel() {
+            return {
+                currentIndex: 0,
+                totalSlides: 3,
+                
+                nextSlide() {
+                    this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
+                },
+                
+                previousSlide() {
+                    this.currentIndex = this.currentIndex === 0 ? this.totalSlides - 1 : this.currentIndex - 1;
+                },
+                
+                goToSlide(index) {
+                    this.currentIndex = index;
+                },
+                
+                init() {
+                    // Auto-rotate testimonials every 5 seconds
+                    setInterval(() => {
+                        this.nextSlide();
+                    }, 5000);
+                }
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if(targetElement) {
+                    // We get the header height to offset the scroll position
+                    const headerOffset = document.querySelector('header').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                         top: offsetPosition,
+                         behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('form-status');
+
+        if(contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                if (!name || !email || !message) {
+                    formStatus.innerHTML = '<p class="text-red-500 font-semibold">Please fill in all required fields.</p>';
+                    return;
+                }
+
+                formStatus.innerHTML = '<p class="text-sky-600 font-semibold">Sending message...</p>';
+                
+                setTimeout(() => {
+                    formStatus.innerHTML = '<p class="text-green-600 font-semibold">Thank you for your message! We will get back to you shortly.</p>';
+                    contactForm.reset();
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
